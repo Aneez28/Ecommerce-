@@ -6,12 +6,14 @@ const cors = require('cors')
 const mongoose = require('mongoose');
 const productroutes = require('./routes/productroutes')
 const categoryroutes = require('./routes/categoryroutes')
+const userroutes = require('./routes/userroutes')
 
 
 app.use(cors())
 app.use(express.json())
 app.use('/products', productroutes)
 app.use('/categories', categoryroutes)
+app.use('/user', userroutes)
 
 
 app.listen(port, () => {
