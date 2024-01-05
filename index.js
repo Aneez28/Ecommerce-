@@ -9,7 +9,10 @@ const categoryroutes = require('./routes/categoryroutes')
 const userroutes = require('./routes/userroutes')
 
 
-app.use(cors())
+app.use(cors({
+  origin: ['https://touchworldtech.postman.co/'],
+  credentials: true
+}))
 app.use(express.json())
 app.use('/products', productroutes)
 app.use('/categories', categoryroutes)
