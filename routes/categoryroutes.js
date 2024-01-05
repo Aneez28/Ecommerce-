@@ -3,10 +3,10 @@ const { getAllcategories, getcategoriesbyId, addCategories, updateCategories, de
 const router = express.Router()
 
 router.get('/', getAllcategories)
-router.get('/:categoriesId', getcategoriesbyId)
+router.get('/:categoryId', getcategoriesbyId)
 router.post('/',addCategories)
-router.patch('/categoriesID', updateCategories)
-router.patch('/categoriesID', deleteCategories)
+router.patch('/:categoryId', updateCategories)
+router.delete('/:categoryId', deleteCategories)
 
 
 module.exports = router

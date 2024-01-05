@@ -23,7 +23,7 @@ const addProducts = async(req, res) => {
         await product.save()
         res.status(201).json(product)
     } catch (error) {
-        res.status(401).send("Check product fields")
+        res.status(400).send("Check product fields")
     }
 }
 const updateProducts = async(req, res) => {

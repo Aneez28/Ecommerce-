@@ -15,7 +15,7 @@ const addUser = async(req, res) => {
         await newUser.save()
         res.status(201).json(newUser)
     } catch (error) {
-        res.status(401).send("Check fields")
+        res.status(400).send("Check fields")
     }
 }
 
@@ -25,7 +25,7 @@ const loginUser = async(req, res) =>{
         const {email,password} = req.body
         const user =  await User.findOne({email: email }) // checking email match on datbase  & passing object to use variable if email in found db
           if (!user){
-             return res.status(401).send("email not found")
+             return res.status(404).send("email not found")
           }
         const passWord = bcrypt.compareSync(password, user.password); // comparing hash passwords
           if (!passWord){
@@ -54,18 +54,19 @@ const loginUser = async(req, res) =>{
         
     }
 }
-const getUserbyId = async(req, res) => {
+const logoutuser = async(req, res) => {
     try {
-        const user= await User.findById(req.params.productId).exec();
-        res.status(200).json(user)
+        res.cookie('token',{ expires: new Date(0) })
+        res.send("Logout Success")
 
     } catch (error) {
-        res.status(404).send("not found")
+        res.status(500).send("internal server error")
     }
 }   
 
 module.exports = {
     addUser,
     loginUser,
-    removeUser
+    removeUser,
+    logoutuser
 }
