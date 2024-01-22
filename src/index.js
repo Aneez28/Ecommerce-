@@ -8,6 +8,9 @@ import ErrorPage from "./Errorpage";
 import Homepage from "./Routes/Homepage";
 import About from "./Routes/About";
 import Categories from "./Routes/Categories";
+import Productpage,{loader as productpageloader} from "./Routes/Productpage";
+
+
 
 import{
    createBrowserRouter,
@@ -22,16 +25,21 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        path: "/Home",
-        element: <Homepage/>,
+        path: "/",
+        element: <Homepage/>
       },
       {
         path: "/About",
-        element: <About/>,
+        element: <About/>
       },
       {
         path: "/Categories",
-        element: <Categories/>,
+        element: <Categories/>
+      },
+      {
+        path: "/:productsid",
+        element: <Productpage/>,
+        loader : productpageloader
       }
   ]
  }
